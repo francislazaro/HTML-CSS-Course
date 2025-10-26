@@ -27,3 +27,43 @@
   </footer>
 </body>
 </html>
+<!-- Gallery -->
+<div class="gallery">
+  <img src="https://via.placeholder.com/400x300" alt="Sample 1" class="thumbnail">
+  <img src="https://via.placeholder.com/401x300" alt="Sample 2" class="thumbnail">
+  <img src="https://via.placeholder.com/402x300" alt="Sample 3" class="thumbnail">
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" style="display:none">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const thumbnails = document.querySelectorAll('.thumbnail');
+  const closeBtn = document.querySelector('.close');
+
+  thumbnails.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'block';
+      lightboxImg.src = img.src;
+      document.body.style.overflow = 'hidden'; // prevent background scroll
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  // Close on click outside image
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
